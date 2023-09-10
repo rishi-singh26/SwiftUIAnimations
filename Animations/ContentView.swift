@@ -17,13 +17,22 @@ struct ContentView: View {
         .background(.red)
         .foregroundColor(.white)
         .clipShape(Circle())
-        .scaleEffect(animationValue)
-//        .blur(radius: (animationValue - 1) * 2)
-        .animation(
-            .easeOut(duration: 1)
-                .repeatForever(autoreverses: true),
-            value: animationValue
+        .overlay(
+            Circle()
+                .stroke(.red)
+                .scaleEffect(animationValue)
+                .opacity(2 - animationValue)
+                .animation(
+                    .easeOut(duration: 1)
+                        .repeatForever(autoreverses: false),
+                    value: animationValue
+                )
         )
+        .onAppear {
+            animationValue = 2
+        }
+//        .scaleEffect(animationValue)
+//        .blur(radius: (animationValue - 1) * 2)
     }
 }
 
