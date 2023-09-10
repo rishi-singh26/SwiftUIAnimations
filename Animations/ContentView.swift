@@ -18,8 +18,12 @@ struct ContentView: View {
         .foregroundColor(.white)
         .clipShape(Circle())
         .scaleEffect(animationValue)
-        .blur(radius: (animationValue - 1) * 2)
-        .animation(.default, value: animationValue)
+//        .blur(radius: (animationValue - 1) * 2)
+        .animation(
+            .easeOut(duration: 1)
+                .repeatForever(autoreverses: true),
+            value: animationValue
+        )
     }
 }
 
